@@ -6,9 +6,6 @@ import Contract.PlutusData
   ( class FromData
   , class ToData
   , PlutusData(Integer)
-  , fromData
-  , genericFromData
-  , genericToData
   , toData
   )
 import Ctl.Internal.Plutus.Types.DataSchema
@@ -21,9 +18,14 @@ import Ctl.Internal.Plutus.Types.DataSchema
   )
 import Ctl.Internal.TypeLevel.Nat (Z)
 import Data.BigInt (BigInt)
-import Data.BigInt as BigInt
 import Data.Generic.Rep (class Generic)
 import Data.Newtype (class Newtype)
+import Aeson
+  ( class DecodeAeson
+  , class EncodeAeson
+  , decodeAeson
+  , encodeAeson'
+  )
 
 tag :: forall s a. a -> Tagged s a
 tag x = Tagged x
@@ -61,3 +63,9 @@ instance (Eq a, Eq b) => Eq (Tagged a b) where
 
 instance (Ord a, Ord b) => Ord (Tagged a b) where
   compare (Tagged x) (Tagged y) = compare x y
+
+instance EncodeAeson a => EncodeAeson (Tagged tag a) where
+  encodeAeson' (Tagged x) = encodeAeson' x
+
+instance DecodeAeson a => DecodeAeson (Tagged tag a) where
+  decodeAeson x = Tagged <$> decodeAeson x

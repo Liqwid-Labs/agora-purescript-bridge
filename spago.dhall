@@ -1,6 +1,8 @@
 { name = "agora-purescript-bridge"
 , dependencies =
-  [ "bigints"
+  [ "uint"
+  , "aeson"
+  , "bigints"
   , "cardano-transaction-lib"
   , "enums"
   , "maybe"
