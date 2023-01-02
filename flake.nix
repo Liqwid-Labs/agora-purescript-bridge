@@ -87,6 +87,7 @@
             # included
             packages = [
               pkgs.fd
+              pkgs.gnumake
             ];
 
             # This will be appended to the `shellHook` that runs. By default,
