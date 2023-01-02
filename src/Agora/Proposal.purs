@@ -447,6 +447,8 @@ derive instance Generic Proposal _
 
 derive instance Newtype Proposal _
 
+derive newtype instance Show Proposal
+
 --------------------------------------------------------------------------------
 
 _Proposal

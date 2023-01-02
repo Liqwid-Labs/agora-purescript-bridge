@@ -165,6 +165,7 @@ derive instance Eq Governor
 derive instance Ord Governor
 derive instance Generic Governor _
 derive instance Newtype Governor _
+derive newtype instance Show Governor
 
 instance DecodeAeson Governor where
   decodeAeson x = do
