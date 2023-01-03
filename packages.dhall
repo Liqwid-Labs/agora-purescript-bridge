@@ -110,7 +110,7 @@ let upstream =
 
 let additions =
       { aeson =
-{ dependencies =
+        { dependencies =
           [ "aff"
           , "argonaut"
           , "argonaut-codecs"

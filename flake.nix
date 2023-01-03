@@ -87,6 +87,7 @@
             # included
             packages = [
               pkgs.fd
+              pkgs.gnumake
             ];
 
             # This will be appended to the `shellHook` that runs. By default,
@@ -135,9 +136,6 @@
 
       devShell = perSystem (system: (psProjectFor system).devShell);
 
-      hydraJobs.x86_64-linux = (
-        self.checks.x86_64-linux
-        // self.packages.x86_64-linux
-      );
+      hydraJobs.x86_64-linux = self.checks.x86_64-linux;
     };
 }

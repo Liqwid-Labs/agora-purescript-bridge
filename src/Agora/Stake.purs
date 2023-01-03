@@ -43,6 +43,8 @@ derive instance Generic Stake _
 
 derive instance Newtype Stake _
 
+derive newtype instance Show Stake
+
 --------------------------------------------------------------------------------
 
 _Stake

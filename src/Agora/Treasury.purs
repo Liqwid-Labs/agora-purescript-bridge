@@ -8,12 +8,16 @@ import Data.Enum (class Enum)
 import Data.Enum.Generic (genericPred, genericSucc)
 import Data.Generic.Rep (class Generic)
 import Data.Lens (Iso', iso)
+import Data.Show.Generic (genericShow)
 
 data TreasuryRedeemer = SpendTreasuryGAT
 
 derive instance Eq TreasuryRedeemer
 derive instance Ord TreasuryRedeemer
 derive instance Generic TreasuryRedeemer _
+
+instance Show TreasuryRedeemer where
+  show = genericShow
 
 instance Enum TreasuryRedeemer where
   succ = genericSucc

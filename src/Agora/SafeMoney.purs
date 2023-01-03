@@ -1,5 +1,6 @@
 module Agora.SafeMoney
   ( ADATag(..)
+  , AuthorityTokenTag(..)
   , GTTag(..)
   ) where
 
@@ -27,3 +28,5 @@ instance FromData GTTag where
   fromData _ = Nothing
 
 data ADATag
+
+data AuthorityTokenTag

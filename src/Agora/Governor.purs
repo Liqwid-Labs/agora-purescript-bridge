@@ -3,6 +3,15 @@ module Agora.Governor where
 
 import Prelude
 
+import Contract.Prim.ByteArray (ByteArray)
+import Aeson
+  ( class DecodeAeson
+  , class EncodeAeson
+  , decodeAeson
+  , encodeAeson'
+  )
+import Contract.Transaction (TransactionInput(..))
+import Data.UInt (UInt)
 import Agora.Types.AssetClass (AssetClass)
 import Agora.Proposal (ProposalId, ProposalThresholds)
 import Agora.SafeMoney (GTTag)
@@ -20,6 +29,7 @@ import Ctl.Internal.Plutus.Types.DataSchema
   , I
   , PNil
   )
+import Data.Newtype (class Newtype, unwrap, wrap)
 import Ctl.Internal.TypeLevel.Nat (Z)
 import Ctl.Internal.Types.PlutusData (PlutusData(Integer))
 import Ctl.Internal.Types.Transaction (TransactionInput)
@@ -32,7 +42,6 @@ import Data.Generic.Rep (class Generic)
 import Data.Lens (Iso', Prism', prism')
 import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Maybe (Maybe(..))
-import Data.Newtype (class Newtype)
 import Data.Show.Generic (genericShow)
 import Data.Tagged (Tagged)
 import ProposalTime (MaxTimeRangeWidth, ProposalTimingConfig)
@@ -156,6 +165,62 @@ derive instance Eq Governor
 derive instance Ord Governor
 derive instance Generic Governor _
 derive instance Newtype Governor _
+derive newtype instance Show Governor
+
+instance DecodeAeson Governor where
+  decodeAeson x = do
+    decodeAeson x <#> (modifyFields >>> wrap)
+    where
+    modifyFields
+      :: forall (r :: Row Type)
+       . { gstOutRef ::
+             { txOutRefIdx :: UInt
+             , txOutRefId :: ByteArray
+             }
+         | r
+         }
+      -> { gstOutRef :: TransactionInput | r }
+    modifyFields
+      fields@
+        { gstOutRef:
+            { txOutRefIdx:
+                index
+            , txOutRefId: id
+            }
+        } =
+      fields
+        { gstOutRef = wrap
+            { index: index
+            , transactionId: wrap id
+            }
+        }
+
+instance EncodeAeson Governor where
+  encodeAeson' x =
+    encodeAeson' $ modifyFields $ unwrap x
+    where
+    modifyFields
+      :: forall (r :: Row Type)
+       . { gstOutRef :: TransactionInput | r }
+      -> { gstOutRef ::
+             { txOutRefIdx :: UInt
+             , txOutRefId :: ByteArray
+             }
+         | r
+         }
+    modifyFields
+      fields@
+        { gstOutRef: TransactionInput
+            { index: index
+            , transactionId: id
+            }
+        } =
+      fields
+        { gstOutRef =
+            { txOutRefIdx: index
+            , txOutRefId: unwrap id
+            }
+        }
 
 --------------------------------------------------------------------------------
 
