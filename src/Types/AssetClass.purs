@@ -4,4 +4,4 @@ module Agora.Types.AssetClass
 
 import Contract.Value (CurrencySymbol, TokenName)
 
-type AssetClass = { currencySymbol :: CurrencySymbol, tokenName :: TokenName }
+type AssetClass = { symbol :: CurrencySymbol, name :: TokenName }
