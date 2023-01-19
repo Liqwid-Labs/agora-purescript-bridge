@@ -7,6 +7,7 @@ import Contract.PlutusData
   , class ToData
   , PlutusData(Integer)
   , toData
+  , fromData
   )
 import Ctl.Internal.Plutus.Types.DataSchema
   ( class HasPlutusSchema
@@ -17,7 +18,6 @@ import Ctl.Internal.Plutus.Types.DataSchema
   , PNil
   )
 import Ctl.Internal.TypeLevel.Nat (Z)
-import Data.BigInt (BigInt)
 import Data.Generic.Rep (class Generic)
 import Data.Newtype (class Newtype)
 import Aeson
@@ -51,9 +51,8 @@ instance
 instance ToData b => ToData (Tagged a b) where
   toData (Tagged x) = toData x
 
-instance FromData (Tagged a BigInt) where
-  fromData (Integer x) = Just (Tagged x)
-  fromData _ = Nothing
+instance FromData b => FromData (Tagged a b) where
+  fromData b = Tagged <$> fromData b
 
 instance Show b => Show (Tagged s b) where
   show (Tagged x) = show x
