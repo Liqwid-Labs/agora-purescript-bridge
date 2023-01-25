@@ -118,6 +118,7 @@ let additions =
           , "arrays"
           , "bifunctors"
           , "bigints"
+          , "bignumber"
           , "const"
           , "control"
           , "effect"
@@ -150,39 +151,22 @@ let additions =
           , "untagged-union"
           ]
         , repo = "https://github.com/mlabs-haskell/purescript-aeson.git"
-        , version = "8e9d42980e824450c18c397295573160d1ce8424"
+        , version = "9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5"
         }
-      , aeson-helpers =
+      , bignumber =
         { dependencies =
-          [ "aff"
-          , "argonaut-codecs"
-          , "argonaut-core"
-          , "arrays"
-          , "bifunctors"
-          , "contravariant"
-          , "control"
+          [ "console"
           , "effect"
           , "either"
-          , "enums"
-          , "foldable-traversable"
-          , "foreign-object"
-          , "maybe"
-          , "newtype"
-          , "ordered-collections"
+          , "exceptions"
+          , "functions"
+          , "integers"
+          , "partial"
           , "prelude"
-          , "profunctor"
-          , "psci-support"
-          , "quickcheck"
-          , "record"
-          , "spec"
-          , "spec-quickcheck"
-          , "transformers"
           , "tuples"
-          , "typelevel-prelude"
           ]
-        , repo =
-            "https://github.com/mlabs-haskell/purescript-bridge-aeson-helpers.git"
-        , version = "44d0dae060cf78babd4534320192b58c16a6f45b"
+        , repo = "https://github.com/mlabs-haskell/purescript-bignumber"
+        , version = "58c51448be23c05caf51cde45bb3b09cc7169447"
         }
       , sequences =
         { dependencies =
@@ -280,10 +264,23 @@ let additions =
         , repo = "https://github.com/firefrorefiddle/purescript-toppokki"
         , version = "6983e07bf0aa55ab779bcef12df3df339a2b5bd9"
         }
+      , noble-secp256k1 =
+        { dependencies =
+          [ "aff"
+          , "aff-promise"
+          , "effect"
+          , "prelude"
+          , "spec"
+          , "tuples"
+          , "unsafe-coerce"
+          ]
+        , repo =
+            "https://github.com/mlabs-haskell/purescript-noble-secp256k1.git"
+        , version = "710c15c48c5afae5e0623664d982a587ff2bd177"
+        }
       , cardano-transaction-lib =
         { dependencies =
           [ "aeson"
-          , "aeson-helpers"
           , "aff"
           , "aff-promise"
           , "aff-retry"
@@ -321,12 +318,14 @@ let additions =
           , "monad-logger"
           , "mote"
           , "newtype"
+          , "noble-secp256k1"
           , "node-buffer"
           , "node-child-process"
           , "node-fs"
           , "node-fs-aff"
           , "node-path"
           , "node-process"
+          , "node-readline"
           , "node-streams"
           , "nonempty"
           , "now"
@@ -366,7 +365,7 @@ let additions =
           , "variant"
           ]
         , repo = "https://github.com/Plutonomicon/cardano-transaction-lib.git"
-        , version = "97bdb76889fa1afdd004ae232dbf9f5a8e64b68b"
+        , version = "e3003b91d97ac02504f8b5e23657189b663d797b"
         }
       }
 

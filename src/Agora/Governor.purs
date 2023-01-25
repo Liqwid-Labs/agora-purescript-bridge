@@ -8,7 +8,7 @@ import Aeson
   ( class DecodeAeson
   , class EncodeAeson
   , decodeAeson
-  , encodeAeson'
+  , encodeAeson
   )
 import Contract.Transaction (TransactionInput(..))
 import Data.UInt (UInt)
@@ -196,8 +196,8 @@ instance DecodeAeson Governor where
         }
 
 instance EncodeAeson Governor where
-  encodeAeson' x =
-    encodeAeson' $ modifyFields $ unwrap x
+  encodeAeson x =
+    encodeAeson $ modifyFields $ unwrap x
     where
     modifyFields
       :: forall (r :: Row Type)
