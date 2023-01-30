@@ -7,17 +7,54 @@ import Ctl.Internal.Types.PubKeyHash (PubKeyHash)
 import Data.BigInt (BigInt)
 import Data.Generic.Rep (class Generic)
 import Data.Lens (Iso')
+import Data.Maybe (Maybe(..))
+import Ctl.Internal.TypeLevel.Nat (Z)
 import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Newtype (class Newtype)
+import Contract.PlutusData
+  ( class FromData
+  , class ToData
+  , genericFromData
+  , genericToData
+  )
+import Ctl.Internal.Plutus.Types.DataSchema
+  ( class HasPlutusSchema
+  , type (:+)
+  , type (:=)
+  , type (@@)
+  , I
+  , PNil
+  )
 
 newtype MultiSig = MultiSig
   { keys :: Array PubKeyHash
   , minSigs :: BigInt
   }
 
+instance
+  HasPlutusSchema MultiSig
+    ( "MultiSig"
+        :=
+          ( "keys" := I (Array PubKeyHash)
+              :+ "minSigs"
+              := I BigInt
+              :+ PNil
+          )
+        @@ Z
+        :+ PNil
+    )
+
+instance ToData MultiSig where
+  toData = genericToData
+
+instance FromData MultiSig where
+  fromData = genericFromData
+
 derive instance Generic MultiSig _
 
 derive instance Newtype MultiSig _
+
+derive newtype instance Eq MultiSig
 
 derive newtype instance Show MultiSig
 
