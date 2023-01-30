@@ -3,6 +3,7 @@ module Agora.MultiSig where
 
 import Prelude
 
+import Utils.IsData (productFromData, productToData)
 import Ctl.Internal.Types.PubKeyHash (PubKeyHash)
 import Data.BigInt (BigInt)
 import Data.Generic.Rep (class Generic)
@@ -11,11 +12,11 @@ import Data.Maybe (Maybe(..))
 import Ctl.Internal.TypeLevel.Nat (Z)
 import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Newtype (class Newtype)
+import Utils.FieldOrder (class FieldOrder)
+import Prim.RowList (Cons, Nil)
 import Contract.PlutusData
   ( class FromData
   , class ToData
-  , genericFromData
-  , genericToData
   )
 import Ctl.Internal.Plutus.Types.DataSchema
   ( class HasPlutusSchema
@@ -44,11 +45,17 @@ instance
         :+ PNil
     )
 
+instance
+  FieldOrder MultiSig
+    ( Cons "keys" (Array PubKeyHash)
+        (Cons "minSigs" BigInt Nil)
+    )
+
 instance ToData MultiSig where
-  toData = genericToData
+  toData = productToData
 
 instance FromData MultiSig where
-  fromData = genericFromData
+  fromData = productFromData
 
 derive instance Generic MultiSig _
 
