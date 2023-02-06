@@ -1,28 +1,25 @@
-module Agora.Pro.MultiSig where
+module Agora.Pro.MultiSig
+  ( MultiSigDatum(..)
+  , MultiSigRedeemer(..)
+  ) where
 
 import Prelude
 
-import Data.Newtype (class Newtype)
-import Data.Generic.Rep (class Generic)
 import Agora.MultiSig (MultiSig)
-import Data.Maybe (Maybe)
-import Ctl.Internal.TypeLevel.Nat (Z)
+import Contract.PlutusData (class FromData, class ToData, PlutusData(..))
 import Contract.Value (CurrencySymbol)
-import Utils.IsData (productFromData, productToData)
-import Utils.FieldOrder (class FieldOrder)
+import Ctl.Internal.Plutus.Types.DataSchema (class HasPlutusSchema, type (:+), type (:=), type (@@), I, PNil)
+import Ctl.Internal.TypeLevel.Nat (Z)
+import Data.BigInt as BigInt
+import Data.Enum.Generic (genericPred, genericSucc)
+import Data.Generic.Rep (class Generic)
+import Data.Maybe (Maybe(..))
+import Data.Newtype (class Newtype)
+import Data.Show.Generic (genericShow)
 import Prim.RowList (Cons, Nil)
-import Contract.PlutusData
-  ( class FromData
-  , class ToData
-  )
-import Ctl.Internal.Plutus.Types.DataSchema
-  ( class HasPlutusSchema
-  , type (:+)
-  , type (:=)
-  , type (@@)
-  , I
-  , PNil
-  )
+import Utils.FieldOrder (class FieldOrder)
+import Utils.IsData (productFromData, productToData)
+import Data.Enum (class Enum)
 
 newtype MultiSigDatum = MultiSigDatum
   { multiSig :: Maybe MultiSig
@@ -61,3 +58,26 @@ derive instance Newtype MultiSigDatum _
 derive newtype instance Eq MultiSigDatum
 
 derive newtype instance Show MultiSigDatum
+
+data MultiSigRedeemer = MutateMultiSig
+
+instance ToData MultiSigRedeemer where
+  toData MutateMultiSig = Integer $ BigInt.fromInt 0
+
+instance FromData MultiSigRedeemer where
+  fromData (Integer x) =
+    if x == BigInt.fromInt 0 then
+      Just MutateMultiSig
+    else Nothing
+  fromData _ = Nothing
+
+derive instance Generic MultiSigRedeemer _
+derive instance Eq MultiSigRedeemer
+derive instance Ord MultiSigRedeemer
+
+instance Show MultiSigRedeemer where
+  show = genericShow
+
+instance Enum MultiSigRedeemer where
+  succ = genericSucc
+  pred = genericPred
