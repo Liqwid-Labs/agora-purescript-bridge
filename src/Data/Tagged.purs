@@ -24,7 +24,7 @@ import Aeson
   ( class DecodeAeson
   , class EncodeAeson
   , decodeAeson
-  , encodeAeson'
+  , encodeAeson
   )
 
 tag :: forall s a. a -> Tagged s a
@@ -57,14 +57,14 @@ instance FromData b => FromData (Tagged a b) where
 instance Show b => Show (Tagged s b) where
   show (Tagged x) = show x
 
-instance (Eq a, Eq b) => Eq (Tagged a b) where
+instance Eq b => Eq (Tagged a b) where
   eq (Tagged x) (Tagged y) = eq x y
 
-instance (Ord a, Ord b) => Ord (Tagged a b) where
+instance Ord b => Ord (Tagged a b) where
   compare (Tagged x) (Tagged y) = compare x y
 
 instance EncodeAeson a => EncodeAeson (Tagged tag a) where
-  encodeAeson' (Tagged x) = encodeAeson' x
+  encodeAeson (Tagged x) = encodeAeson x
 
 instance DecodeAeson a => DecodeAeson (Tagged tag a) where
   decodeAeson x = Tagged <$> decodeAeson x

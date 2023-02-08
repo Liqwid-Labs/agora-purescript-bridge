@@ -14,8 +14,8 @@
       # NOTE
       # This should match the same revision as the one in your `packages.dhall` to ensure
       # the greatest compatibility
-      # https://github.com/Plutonomicon/cardano-transaction-lib/pull/1053
-      rev = "97bdb76889fa1afdd004ae232dbf9f5a8e64b68b";
+      # v4.0.2
+      rev = "e3003b91d97ac02504f8b5e23657189b663d797b";
     };
     nixpkgs.follows = "cardano-transaction-lib/nixpkgs";
   };
@@ -35,7 +35,7 @@
         inherit system;
         overlays = [
           cardano-transaction-lib.overlays.purescript
-          cardano-transaction-lib.overlays.ctl-server
+          cardano-transaction-lib.overlays.spago
           cardano-transaction-lib.overlays.runtime
         ];
       };
@@ -136,6 +136,6 @@
 
       devShell = perSystem (system: (psProjectFor system).devShell);
 
-      hydraJobs.x86_64-linux = self.checks.x86_64-linux;
+      hydraJobs.x86_64-linux = {devShell = self.devShell.x86_64-linux;} // self.checks.x86_64-linux;
     };
 }
