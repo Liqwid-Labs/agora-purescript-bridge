@@ -136,6 +136,6 @@
 
       devShell = perSystem (system: (psProjectFor system).devShell);
 
-      hydraJobs.x86_64-linux = self.checks.x86_64-linux;
+      hydraJobs.x86_64-linux = {devShell = self.devShell.x86_64-linux;} // self.checks.x86_64-linux;
     };
 }
