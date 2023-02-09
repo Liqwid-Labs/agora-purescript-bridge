@@ -18,11 +18,10 @@ import Ctl.Internal.Plutus.Types.DataSchema
   )
 import Ctl.Internal.TypeLevel.Nat (Z)
 import Ctl.Internal.Types.Interval (POSIXTime)
-import Data.BigInt (BigInt)
 import Data.Generic.Rep (class Generic)
 import Data.Newtype (class Newtype)
 
-newtype ProposalStartingTime = ProposalStartingTime BigInt
+newtype ProposalStartingTime = ProposalStartingTime POSIXTime
 
 derive instance Newtype ProposalStartingTime _
 
