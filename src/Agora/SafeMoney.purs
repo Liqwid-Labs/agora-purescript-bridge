@@ -8,6 +8,7 @@ import Prelude
 
 import Contract.PlutusData (class FromData, class ToData)
 import Ctl.Internal.Types.PlutusData (PlutusData(Constr))
+import Ctl.Internal.Types.BigNum (zero) as BigNum
 import Data.Generic.Rep (class Generic)
 import Data.Maybe (Maybe(Nothing))
 
@@ -22,7 +23,7 @@ derive instance Ord GTTag
 derive instance Generic GTTag _
 
 instance ToData GTTag where
-  toData _ = Constr zero []
+  toData _ = Constr BigNum.zero []
 
 instance FromData GTTag where
   fromData _ = Nothing
