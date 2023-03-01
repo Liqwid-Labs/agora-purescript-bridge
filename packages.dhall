@@ -358,22 +358,6 @@ let additions =
         , repo = "https://github.com/Plutonomicon/cardano-transaction-lib.git"
         , version = "v5.0.0"
         }
-      , agora-purescript-bridge =
-        { dependencies =
-          [ "bigints"
-          , "cardano-transaction-lib"
-          , "enums"
-          , "maybe"
-          , "newtype"
-          , "prelude"
-          , "profunctor-lenses"
-          , "record"
-          , "tuples"
-          , "arrays"
-          ]
-        , repo = "https://github.com/Liqwid-Labs/agora-purescript-bridge.git"
-        , version = "82c9594e211ced5567a3610a8e23c76f9100a41a"
-        }
       , noble-secp256k1 =
         { dependencies =
           [ "aff"
