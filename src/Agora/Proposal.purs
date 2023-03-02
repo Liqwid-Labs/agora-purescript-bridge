@@ -3,6 +3,7 @@ module Agora.Proposal where
 
 import Prelude
 
+import Aeson (class EncodeAeson, class DecodeAeson)
 import Agora.Types.AssetClass (AssetClass)
 import Agora.SafeMoney (GTTag)
 import Contract.AssocMap (Map(Map))
@@ -75,6 +76,10 @@ derive newtype instance Show ResultTag
 derive newtype instance ToData ResultTag
 
 derive newtype instance FromData ResultTag
+
+derive newtype instance EncodeAeson ResultTag
+
+derive newtype instance DecodeAeson ResultTag
 
 --------------------------------------------------------------------------------
 
