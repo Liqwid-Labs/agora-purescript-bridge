@@ -701,6 +701,18 @@ let
         installPhase = "ln -s $src $out";
       };
 
+    "liqwid-ctl-extra" = pkgs.stdenv.mkDerivation {
+        name = "liqwid-ctl-extra";
+        version = "df89e1876b25bbb376665db904d02ed0f096f048";
+        src = pkgs.fetchgit {
+          url = "ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git";
+          rev = "df89e1876b25bbb376665db904d02ed0f096f048";
+          sha256 = "08wwgpcnv5gr2db9v885q8zn9ik8f9lpg4fq9fnz94ii369krcwa";
+        };
+        phases = "installPhase";
+        installPhase = "ln -s $src $out";
+      };
+
     "lists" = pkgs.stdenv.mkDerivation {
         name = "lists";
         version = "v6.0.1";
@@ -1133,6 +1145,18 @@ let
         installPhase = "ln -s $src $out";
       };
 
+    "ply-ctl" = pkgs.stdenv.mkDerivation {
+        name = "ply-ctl";
+        version = "9e5cff99aeced65e1df984a15b362d40f1fa1e1a";
+        src = pkgs.fetchgit {
+          url = "https://github.com/mlabs-haskell/ply-ctl.git";
+          rev = "9e5cff99aeced65e1df984a15b362d40f1fa1e1a";
+          sha256 = "05s5pr313glcg3vfmjsbi6aw51f5bylllbij2k2nmpa0bisw45hi";
+        };
+        phases = "installPhase";
+        installPhase = "ln -s $src $out";
+      };
+
     "posix-types" = pkgs.stdenv.mkDerivation {
         name = "posix-types";
         version = "v5.0.0";
@@ -1284,6 +1308,18 @@ let
           url = "https://github.com/purescript/purescript-record.git";
           rev = "091495d61fcaa9d8d8232e7b800f403a3165a38f";
           sha256 = "0yidfvwiajiv8xflfsi2p8dqnp0qmmcz9jry58jyn9ga82z2pqn6";
+        };
+        phases = "installPhase";
+        installPhase = "ln -s $src $out";
+      };
+
+    "record-extra" = pkgs.stdenv.mkDerivation {
+        name = "record-extra";
+        version = "v4.0.0";
+        src = pkgs.fetchgit {
+          url = "https://github.com/justinwoo/purescript-record-extra.git";
+          rev = "dbce1444c36908c271081d88a53f0d72544e8a00";
+          sha256 = "1s4xmhg8s5y6lq80j2h0a5bzni47spvzibf30w2s13p1i7v0fig5";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";

@@ -13,7 +13,6 @@
     nixpkgs-ctl.follows = "cardano-transaction-lib/nixpkgs";
     nixpkgs-latest.url = "github:NixOS/nixpkgs?rev=a2494bf2042d605ca1c4a679401bdc4971da54fb";
 
-
     cardano-transaction-lib = {
       type = "github";
       owner = "Plutonomicon";
@@ -22,6 +21,14 @@
       # This should match the same revision as the one in your `packages.dhall` to ensure
       # the greatest compatibility
       ref = "v5.0.0";
+    };
+
+    liqwid-ctl-extra = {
+      url = "git+ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git?ref=ctl-v5";
+      inputs = {
+        ctl.follows = "cardano-transaction-lib";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
   };
 
@@ -47,6 +54,10 @@
         {
           offchain.default = {
             src = ./.;
+
+            spagoOverride = {
+              "liqwid-ctl-extra" = inputs.liqwid-ctl-extra;
+            };
 
             packageLock = ./package-lock.json;
             packageJson = ./package.json;

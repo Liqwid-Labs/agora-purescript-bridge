@@ -4,6 +4,7 @@
   , "aeson"
   , "bigints"
   , "cardano-transaction-lib"
+  , "liqwid-ctl-extra"
   , "enums"
   , "maybe"
   , "newtype"

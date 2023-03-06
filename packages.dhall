@@ -372,6 +372,63 @@ let additions =
             "https://github.com/mlabs-haskell/purescript-noble-secp256k1.git"
         , version = "710c15c48c5afae5e0623664d982a587ff2bd177"
         }
+      , liqwid-ctl-extra =
+        { dependencies =
+          [ "aeson"
+          , "aff"
+          , "affjax"
+          , "argonaut-codecs"
+          , "arrays"
+          , "avar"
+          , "bigints"
+          , "cardano-transaction-lib"
+          , "control"
+          , "either"
+          , "exceptions"
+          , "foldable-traversable"
+          , "foreign-object"
+          , "http-methods"
+          , "maybe"
+          , "newtype"
+          , "ordered-collections"
+          , "parallel"
+          , "prelude"
+          , "profunctor-lenses"
+          , "ply-ctl"
+          , "quickcheck"
+          , "rationals"
+          , "record"
+          , "record-extra"
+          , "safe-coerce"
+          , "sequences"
+          , "strings"
+          , "transformers"
+          , "tuples"
+          , "typelevel"
+          ]
+        , repo = "ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git"
+        , version = "df89e1876b25bbb376665db904d02ed0f096f048"
+        }
+      , ply-ctl =
+        { dependencies =
+          [ "effect"
+          , "prelude"
+          , "cardano-transaction-lib"
+          , "bigints"
+          , "aeson"
+          , "either"
+          , "newtype"
+          , "node-buffer"
+          , "node-fs"
+          , "tuples"
+          , "arrays"
+          , "uint"
+          , "node-process"
+          , "integers"
+          ]
+        , repo = "https://github.com/mlabs-haskell/ply-ctl.git"
+        , version = "9e5cff99aeced65e1df984a15b362d40f1fa1e1a"
+        }
       }
 
 in  upstream // additions
