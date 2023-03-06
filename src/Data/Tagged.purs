@@ -5,7 +5,6 @@ import Contract.Prelude
 import Contract.PlutusData
   ( class FromData
   , class ToData
-  , PlutusData(Integer)
   , toData
   , fromData
   )
