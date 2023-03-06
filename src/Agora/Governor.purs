@@ -43,7 +43,7 @@ import Data.Lens (Iso', Prism', prism')
 import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Maybe (Maybe(..))
 import Data.Show.Generic (genericShow)
-import Data.Tagged (Tagged)
+import Ctl.Extra.Tagged (Tagged)
 import ProposalTime (MaxTimeRangeWidth, ProposalTimingConfig)
 
 newtype GovernorDatum = GovernorDatum
