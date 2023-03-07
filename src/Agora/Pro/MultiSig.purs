@@ -17,8 +17,8 @@ import Data.Maybe (Maybe(..))
 import Data.Newtype (class Newtype)
 import Data.Show.Generic (genericShow)
 import Prim.RowList (Cons, Nil)
-import Utils.FieldOrder (class FieldOrder)
-import Utils.IsData (productFromData, productToData)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Ctl.Extra.IsData (productFromData, productToData)
 import Data.Enum (class Enum)
 
 newtype MultiSigDatum = MultiSigDatum

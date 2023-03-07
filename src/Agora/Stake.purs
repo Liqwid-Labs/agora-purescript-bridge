@@ -31,8 +31,8 @@ import Data.Newtype (class Newtype)
 import Data.Show.Generic (genericShow)
 import Ctl.Extra.Tagged (Tagged)
 import Prim.RowList (Cons, Nil)
-import Utils.FieldOrder (class FieldOrder)
-import Utils.IsData (productFromData, productToData)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Ctl.Extra.IsData (productFromData, productToData)
 
 newtype Stake = Stake
   { gtClassRef :: Tagged GTTag AssetClass
