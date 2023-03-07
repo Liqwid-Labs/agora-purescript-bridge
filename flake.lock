@@ -5643,11 +5643,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1677609380,
-        "narHash": "sha256-irM8kxkxkvStS9iRd2lyaMZkP8IFoZ1WE/mVbdl9nCM=",
+        "lastModified": 1678130083,
+        "narHash": "sha256-3wpPqCLVW1lKRQkvGAsjOJMpPUUJt03GXclj806x1yU=",
         "ref": "ctl-v5",
-        "rev": "df89e1876b25bbb376665db904d02ed0f096f048",
-        "revCount": 43,
+        "rev": "d4859572c30277f5dd819b2910b0df1001e6026d",
+        "revCount": 99,
         "type": "git",
         "url": "ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git"
       },
