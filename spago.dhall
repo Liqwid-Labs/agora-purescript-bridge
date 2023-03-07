@@ -10,9 +10,7 @@
   , "newtype"
   , "prelude"
   , "profunctor-lenses"
-  , "record"
   , "tuples"
-  , "arrays"
   , "effect"
   ]
 , packages = ./packages.dhall
