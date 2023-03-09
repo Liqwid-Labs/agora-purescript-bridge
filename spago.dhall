@@ -4,14 +4,13 @@
   , "aeson"
   , "bigints"
   , "cardano-transaction-lib"
+  , "liqwid-ctl-extra"
   , "enums"
   , "maybe"
   , "newtype"
   , "prelude"
   , "profunctor-lenses"
-  , "record"
   , "tuples"
-  , "arrays"
   , "effect"
   ]
 , packages = ./packages.dhall

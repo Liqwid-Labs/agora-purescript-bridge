@@ -13,8 +13,8 @@ import Data.Newtype (class Newtype)
 import Data.Tuple (Tuple)
 import Data.Tuple.Nested (type (/\))
 import Prim.RowList (Cons, Nil)
-import Utils.FieldOrder (class FieldOrder)
-import Utils.IsData (productFromData, productToData)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Ctl.Extra.IsData (productFromData, productToData)
 
 newtype TreasuryWithdrawalDatum = TreasuryWithdrawalDatum
   { receivers :: Array (Credential /\ Value)

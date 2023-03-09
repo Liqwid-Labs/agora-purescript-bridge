@@ -37,13 +37,13 @@ import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Maybe (Maybe(..))
 import Data.Newtype (class Newtype, unwrap)
 import Data.Show.Generic (genericShow)
-import Data.Tagged (Tagged)
+import Ctl.Extra.Tagged (Tagged)
 import Data.Tuple (Tuple)
 import Data.Tuple.Nested ((/\))
 import Prim.RowList (Cons, Nil)
 import ProposalTime (ProposalStartingTime, ProposalTimingConfig)
-import Utils.FieldOrder (class FieldOrder)
-import Utils.IsData (productFromData, productToData)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Ctl.Extra.IsData (productFromData, productToData)
 
 newtype ProposalId = ProposalId BigInt
 

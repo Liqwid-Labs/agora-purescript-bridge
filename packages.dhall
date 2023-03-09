@@ -117,8 +117,8 @@ let additions =
           , "argonaut-core"
           , "arrays"
           , "bifunctors"
-          , "bigints"
           , "bignumber"
+          , "bigints"
           , "const"
           , "control"
           , "effect"
@@ -151,22 +151,7 @@ let additions =
           , "untagged-union"
           ]
         , repo = "https://github.com/mlabs-haskell/purescript-aeson.git"
-        , version = "9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5"
-        }
-      , bignumber =
-        { dependencies =
-          [ "console"
-          , "effect"
-          , "either"
-          , "exceptions"
-          , "functions"
-          , "integers"
-          , "partial"
-          , "prelude"
-          , "tuples"
-          ]
-        , repo = "https://github.com/mlabs-haskell/purescript-bignumber"
-        , version = "58c51448be23c05caf51cde45bb3b09cc7169447"
+        , version = "bfd8f4dcd0522a076320f9dc710c24817438e02e"
         }
       , sequences =
         { dependencies =
@@ -190,6 +175,21 @@ let additions =
           ]
         , repo = "https://github.com/hdgarrood/purescript-sequences"
         , version = "v3.0.2"
+        }
+      , bignumber =
+        { dependencies =
+          [ "console"
+          , "effect"
+          , "either"
+          , "exceptions"
+          , "functions"
+          , "integers"
+          , "partial"
+          , "prelude"
+          , "tuples"
+          ]
+        , repo = "https://github.com/mlabs-haskell/purescript-bignumber"
+        , version = "705923edd892a3397b90d28ce7db9a7181dcd599"
         }
       , properties =
         { dependencies = [ "prelude", "console" ]
@@ -264,35 +264,24 @@ let additions =
         , repo = "https://github.com/firefrorefiddle/purescript-toppokki"
         , version = "6983e07bf0aa55ab779bcef12df3df339a2b5bd9"
         }
-      , noble-secp256k1 =
-        { dependencies =
-          [ "aff"
-          , "aff-promise"
-          , "effect"
-          , "prelude"
-          , "spec"
-          , "tuples"
-          , "unsafe-coerce"
-          ]
-        , repo =
-            "https://github.com/mlabs-haskell/purescript-noble-secp256k1.git"
-        , version = "710c15c48c5afae5e0623664d982a587ff2bd177"
-        }
       , cardano-transaction-lib =
         { dependencies =
           [ "aeson"
+          , "argonaut-codecs"
           , "aff"
           , "aff-promise"
           , "aff-retry"
           , "affjax"
+          , "argonaut"
           , "arraybuffer-types"
           , "arrays"
+          , "avar"
           , "bifunctors"
           , "bigints"
+          , "bignumber"
           , "checked-exceptions"
+          , "crypto"
           , "console"
-          , "const"
-          , "contravariant"
           , "control"
           , "datetime"
           , "debug"
@@ -304,6 +293,9 @@ let additions =
           , "foldable-traversable"
           , "foreign"
           , "foreign-object"
+          , "functions"
+          , "formatters"
+          , "gen"
           , "heterogeneous"
           , "http-methods"
           , "identity"
@@ -352,7 +344,6 @@ let additions =
           , "strings"
           , "stringutils"
           , "tailrec"
-          , "text-encoding"
           , "these"
           , "transformers"
           , "tuples"
@@ -365,7 +356,78 @@ let additions =
           , "variant"
           ]
         , repo = "https://github.com/Plutonomicon/cardano-transaction-lib.git"
-        , version = "e3003b91d97ac02504f8b5e23657189b663d797b"
+        , version = "v5.0.0"
+        }
+      , noble-secp256k1 =
+        { dependencies =
+          [ "aff"
+          , "aff-promise"
+          , "effect"
+          , "prelude"
+          , "spec"
+          , "tuples"
+          , "unsafe-coerce"
+          ]
+        , repo =
+            "https://github.com/mlabs-haskell/purescript-noble-secp256k1.git"
+        , version = "710c15c48c5afae5e0623664d982a587ff2bd177"
+        }
+      , liqwid-ctl-extra =
+        { dependencies =
+          [ "aeson"
+          , "aff"
+          , "affjax"
+          , "argonaut-codecs"
+          , "arrays"
+          , "avar"
+          , "bigints"
+          , "cardano-transaction-lib"
+          , "control"
+          , "either"
+          , "exceptions"
+          , "foldable-traversable"
+          , "foreign-object"
+          , "http-methods"
+          , "maybe"
+          , "newtype"
+          , "ordered-collections"
+          , "parallel"
+          , "prelude"
+          , "profunctor-lenses"
+          , "ply-ctl"
+          , "quickcheck"
+          , "rationals"
+          , "record"
+          , "record-extra"
+          , "safe-coerce"
+          , "sequences"
+          , "strings"
+          , "transformers"
+          , "tuples"
+          , "typelevel"
+          ]
+        , repo = "ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git"
+        , version = "d4859572c30277f5dd819b2910b0df1001e6026d"
+        }
+      , ply-ctl =
+        { dependencies =
+          [ "effect"
+          , "prelude"
+          , "cardano-transaction-lib"
+          , "bigints"
+          , "aeson"
+          , "either"
+          , "newtype"
+          , "node-buffer"
+          , "node-fs"
+          , "tuples"
+          , "arrays"
+          , "uint"
+          , "node-process"
+          , "integers"
+          ]
+        , repo = "https://github.com/mlabs-haskell/ply-ctl.git"
+        , version = "9e5cff99aeced65e1df984a15b362d40f1fa1e1a"
         }
       }
 
