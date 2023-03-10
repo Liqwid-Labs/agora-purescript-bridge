@@ -15,22 +15,8 @@ import Data.UInt (UInt)
 import Agora.Types.AssetClass (AssetClass)
 import Agora.Proposal (ProposalId, ProposalThresholds)
 import Agora.SafeMoney (GTTag)
-import Contract.PlutusData
-  ( class FromData
-  , class ToData
-  , genericFromData
-  , genericToData
-  )
-import Ctl.Internal.Plutus.Types.DataSchema
-  ( class HasPlutusSchema
-  , type (:+)
-  , type (:=)
-  , type (@@)
-  , I
-  , PNil
-  )
+import Contract.PlutusData (class FromData, class ToData)
 import Data.Newtype (class Newtype, unwrap, wrap)
-import Ctl.Internal.TypeLevel.Nat (Z)
 import Ctl.Internal.Types.PlutusData (PlutusData(Integer))
 import Ctl.Internal.Types.Transaction (TransactionInput)
 import Data.BigInt (BigInt)
@@ -45,6 +31,9 @@ import Data.Maybe (Maybe(..))
 import Data.Show.Generic (genericShow)
 import Ctl.Extra.Tagged (Tagged)
 import ProposalTime (MaxTimeRangeWidth, ProposalTimingConfig)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Prim.RowList (Cons, Nil)
+import Ctl.Extra.IsData (productFromData, productToData)
 
 newtype GovernorDatum = GovernorDatum
   { proposalThresholds :: ProposalThresholds
@@ -55,29 +44,23 @@ newtype GovernorDatum = GovernorDatum
   }
 
 instance
-  HasPlutusSchema GovernorDatum
-    ( "GovernorDatum"
-        :=
-          ( "proposalThresholds" := I ProposalThresholds
-              :+ "nextProposalId"
-              := I ProposalId
-              :+ "proposalTimings"
-              := I ProposalTimingConfig
-              :+ "createProposalTimeRangeMaxWidth"
-              := I MaxTimeRangeWidth
-              :+ "maximumCreatedProposalsPerStake"
-              := I BigInt
-              :+ PNil
-          )
-        @@ Z
-        :+ PNil
+  FieldOrder GovernorDatum
+    ( Cons "proposalThresholds" ProposalThresholds
+        ( Cons "nextProposalId" ProposalId
+            ( Cons "proposalTimings" ProposalTimingConfig
+                ( Cons "createProposalTimeRangeMaxWidth" MaxTimeRangeWidth
+                    ( Cons "maximumCreatedProposalsPerStake" BigInt Nil
+                    )
+                )
+            )
+        )
     )
 
 instance ToData GovernorDatum where
-  toData = genericToData
+  toData = productToData
 
 instance FromData GovernorDatum where
-  fromData = genericFromData
+  fromData = productFromData
 
 derive instance Generic GovernorDatum _
 

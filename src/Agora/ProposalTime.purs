@@ -2,24 +2,13 @@ module ProposalTime where
 
 import Prelude
 
-import Contract.PlutusData
-  ( class FromData
-  , class ToData
-  , genericFromData
-  , genericToData
-  )
-import Ctl.Internal.Plutus.Types.DataSchema
-  ( class HasPlutusSchema
-  , type (:+)
-  , type (:=)
-  , type (@@)
-  , I
-  , PNil
-  )
-import Ctl.Internal.TypeLevel.Nat (Z)
+import Contract.PlutusData (class FromData, class ToData)
+import Ctl.Extra.FieldOrder (class FieldOrder)
 import Ctl.Internal.Types.Interval (POSIXTime)
 import Data.Generic.Rep (class Generic)
 import Data.Newtype (class Newtype)
+import Prim.RowList (Cons, Nil)
+import Ctl.Extra.IsData (productFromData, productToData)
 
 newtype ProposalStartingTime = ProposalStartingTime POSIXTime
 
@@ -47,31 +36,25 @@ newtype ProposalTimingConfig = ProposalTimingConfig
   }
 
 instance
-  HasPlutusSchema ProposalTimingConfig
-    ( "ProposalTimingConfig"
-        :=
-          ( "draftTime" := I POSIXTime
-              :+ "votingTime"
-              := I POSIXTime
-              :+ "lockingTime"
-              := I POSIXTime
-              :+ "executingTime"
-              := I POSIXTime
-              :+ "minStakeVotingTime"
-              := I POSIXTime
-              :+ "votingTimeRangeMaxWidth"
-              := I MaxTimeRangeWidth
-              :+ PNil
-          )
-        @@ Z
-        :+ PNil
+  FieldOrder ProposalTimingConfig
+    ( Cons "draftTime" POSIXTime
+        ( Cons "votingTime" POSIXTime
+            ( Cons "lockingTime" POSIXTime
+                ( Cons "executingTime" POSIXTime
+                    ( Cons "minStakeVotingTime" POSIXTime
+                        ( Cons "votingTimeRangeMaxWidth" MaxTimeRangeWidth Nil
+                        )
+                    )
+                )
+            )
+        )
     )
 
 instance ToData ProposalTimingConfig where
-  toData = genericToData
+  toData = productToData
 
 instance FromData ProposalTimingConfig where
-  fromData = genericFromData
+  fromData = productFromData
 
 derive instance Eq ProposalTimingConfig
 
