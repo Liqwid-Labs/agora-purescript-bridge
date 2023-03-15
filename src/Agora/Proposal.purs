@@ -4,23 +4,20 @@ module Agora.Proposal where
 import Prelude
 
 import Aeson (class EncodeAeson, class DecodeAeson)
-import Agora.Types.AssetClass (AssetClass)
 import Agora.SafeMoney (GTTag)
+import Agora.Types.AssetClass (AssetClass)
 import Contract.AssocMap (Map(Map))
 import Contract.Credential (Credential)
-import Contract.PlutusData
-  ( class FromData
-  , class ToData
-  , genericFromData
-  , genericToData
-  )
+import Contract.PlutusData (class FromData, class ToData, genericFromData, genericToData)
 import Contract.Scripts (ScriptHash)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Ctl.Extra.IsData (productFromData, productToData)
+import Ctl.Extra.Tagged (Tagged)
 import Ctl.Internal.Plutus.Types.DataSchema
   ( class HasPlutusSchema
   , type (:+)
   , type (:=)
   , type (@@)
-  , I
   , PNil
   )
 import Ctl.Internal.TypeLevel.Nat (S, Z)
@@ -37,13 +34,10 @@ import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Maybe (Maybe(..))
 import Data.Newtype (class Newtype, unwrap)
 import Data.Show.Generic (genericShow)
-import Ctl.Extra.Tagged (Tagged)
 import Data.Tuple (Tuple)
 import Data.Tuple.Nested ((/\))
 import Prim.RowList (Cons, Nil)
 import ProposalTime (ProposalStartingTime, ProposalTimingConfig)
-import Ctl.Extra.FieldOrder (class FieldOrder)
-import Ctl.Extra.IsData (productFromData, productToData)
 
 newtype ProposalId = ProposalId BigInt
 
@@ -164,29 +158,23 @@ newtype ProposalThresholds = ProposalThresholds
   }
 
 instance
-  HasPlutusSchema ProposalThresholds
-    ( "ProposalThresholds"
-        :=
-          ( "execute" := I (Tagged GTTag BigInt)
-              :+ "create"
-              := I (Tagged GTTag BigInt)
-              :+ "toVoting"
-              := I (Tagged GTTag BigInt)
-              :+ "vote"
-              := I (Tagged GTTag BigInt)
-              :+ "cosign"
-              := I (Tagged GTTag BigInt)
-              :+ PNil
-          )
-        @@ Z
-        :+ PNil
+  FieldOrder ProposalThresholds
+    ( Cons "execute" (Tagged GTTag BigInt)
+        ( Cons "create" (Tagged GTTag BigInt)
+            ( Cons "toVoting" (Tagged GTTag BigInt)
+                ( Cons "vote" (Tagged GTTag BigInt)
+                    ( Cons "cosign" (Tagged GTTag BigInt) Nil
+                    )
+                )
+            )
+        )
     )
 
 instance ToData ProposalThresholds where
-  toData = genericToData
+  toData = productToData
 
 instance FromData ProposalThresholds where
-  fromData = genericFromData
+  fromData = productFromData
 
 derive instance Generic ProposalThresholds _
 

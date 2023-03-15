@@ -9,6 +9,10 @@ import Data.Generic.Rep (class Generic)
 import Data.Lens (Iso')
 import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Newtype (class Newtype)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Prim.RowList (Cons, Nil)
+import Ctl.Extra.IsData (productFromData, productToData)
+import Contract.PlutusData (class FromData, class ToData)
 
 newtype MutateGovernorDatum = MutateGovernorDatum
   { governorRef :: TransactionInput
@@ -20,6 +24,19 @@ derive instance Generic MutateGovernorDatum _
 derive instance Newtype MutateGovernorDatum _
 
 derive newtype instance Show MutateGovernorDatum
+
+instance
+  FieldOrder MutateGovernorDatum
+    ( Cons "governorRef" TransactionInput
+        ( Cons "newDatum" GovernorDatum Nil
+        )
+    )
+
+instance ToData MutateGovernorDatum where
+  toData = productToData
+
+instance FromData MutateGovernorDatum where
+  fromData = productFromData
 
 --------------------------------------------------------------------------------
 
