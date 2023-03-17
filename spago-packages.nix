@@ -703,11 +703,11 @@ let
 
     "liqwid-ctl-extra" = pkgs.stdenv.mkDerivation {
         name = "liqwid-ctl-extra";
-        version = "caf3c64e0fb3c08710e533b417f52b25a46f696e";
+        version = "a42e565dc6f8c495161dea1a8b8b55b8ce6e0c87";
         src = pkgs.fetchgit {
           url = "ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git";
-          rev = "caf3c64e0fb3c08710e533b417f52b25a46f696e";
-          sha256 = "0w9q4015kc003vd5mvin9jf13z62limkz388cjqrkjii89vyiqfd";
+          rev = "a42e565dc6f8c495161dea1a8b8b55b8ce6e0c87";
+          sha256 = "0izgb6jf3pjd31d2f3m7j1mvppjzjyx3wvz59d595srjdsgp0lsm";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
