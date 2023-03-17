@@ -5,7 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     liqwid-nix = {
-      url = "github:Liqwid-Labs/liqwid-nix";
+      url = "github:Liqwid-Labs/liqwid-nix/v2.7.1";
       inputs.nixpkgs-latest.follows = "nixpkgs-latest";
     };
 
@@ -24,7 +24,7 @@
     };
 
     liqwid-ctl-extra = {
-      url = "git+ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git?ref=ctl-v5";
+      url = "git+ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git";
       inputs = {
         ctl.follows = "cardano-transaction-lib";
         nixpkgs.follows = "nixpkgs";

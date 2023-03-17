@@ -3,20 +3,16 @@ module Agora.Governor where
 
 import Prelude
 
-import Contract.Prim.ByteArray (ByteArray)
-import Aeson
-  ( class DecodeAeson
-  , class EncodeAeson
-  , decodeAeson
-  , encodeAeson
-  )
-import Contract.Transaction (TransactionInput(..))
-import Data.UInt (UInt)
-import Agora.Types.AssetClass (AssetClass)
+import Aeson (class DecodeAeson, class EncodeAeson, decodeAeson, encodeAeson)
 import Agora.Proposal (ProposalId, ProposalThresholds)
 import Agora.SafeMoney (GTTag)
 import Contract.PlutusData (class FromData, class ToData)
-import Data.Newtype (class Newtype, unwrap, wrap)
+import Contract.Prim.ByteArray (ByteArray)
+import Contract.Transaction (TransactionInput(..))
+import Ctl.Extra.AssetClass (AssetClass)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Ctl.Extra.IsData (productFromData, productToData)
+import Ctl.Extra.Tagged (Tagged)
 import Ctl.Internal.Types.PlutusData (PlutusData(Integer))
 import Ctl.Internal.Types.Transaction (TransactionInput)
 import Data.BigInt (BigInt)
@@ -28,12 +24,11 @@ import Data.Generic.Rep (class Generic)
 import Data.Lens (Iso', Prism', prism')
 import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Maybe (Maybe(..))
+import Data.Newtype (class Newtype, unwrap, wrap)
 import Data.Show.Generic (genericShow)
-import Ctl.Extra.Tagged (Tagged)
-import ProposalTime (MaxTimeRangeWidth, ProposalTimingConfig)
-import Ctl.Extra.FieldOrder (class FieldOrder)
+import Data.UInt (UInt)
 import Prim.RowList (Cons, Nil)
-import Ctl.Extra.IsData (productFromData, productToData)
+import ProposalTime (MaxTimeRangeWidth, ProposalTimingConfig)
 
 newtype GovernorDatum = GovernorDatum
   { proposalThresholds :: ProposalThresholds
