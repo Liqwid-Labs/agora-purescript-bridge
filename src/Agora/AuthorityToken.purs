@@ -3,7 +3,7 @@ module Agora.AuthorityToken where
 
 import Prelude
 
-import Agora.Types.AssetClass (AssetClass)
+import Ctl.Extra.AssetClass (AssetClass)
 import Data.Generic.Rep (class Generic)
 import Data.Lens (Iso')
 import Data.Lens.Iso.Newtype (_Newtype)

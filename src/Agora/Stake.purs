@@ -3,24 +3,16 @@ module Agora.Stake where
 
 import Prelude
 
-import Agora.Types.AssetClass (AssetClass)
 import Agora.Proposal (ProposalId, ResultTag)
 import Agora.SafeMoney (GTTag)
 import Contract.Credential (Credential)
-import Contract.PlutusData
-  ( class FromData
-  , class ToData
-  , genericFromData
-  , genericToData
-  )
+import Contract.PlutusData (class FromData, class ToData, genericFromData, genericToData)
 import Contract.Time (POSIXTime)
-import Ctl.Internal.Plutus.Types.DataSchema
-  ( class HasPlutusSchema
-  , type (:+)
-  , type (:=)
-  , type (@@)
-  , PNil
-  )
+import Ctl.Extra.AssetClass (AssetClass)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Ctl.Extra.IsData (productFromData, productToData)
+import Ctl.Extra.Tagged (Tagged)
+import Ctl.Internal.Plutus.Types.DataSchema (class HasPlutusSchema, type (:+), type (:=), type (@@), PNil)
 import Ctl.Internal.TypeLevel.Nat (S, Z)
 import Data.BigInt (BigInt)
 import Data.Generic.Rep (class Generic)
@@ -29,10 +21,7 @@ import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Maybe (Maybe(Just, Nothing))
 import Data.Newtype (class Newtype)
 import Data.Show.Generic (genericShow)
-import Ctl.Extra.Tagged (Tagged)
 import Prim.RowList (Cons, Nil)
-import Ctl.Extra.FieldOrder (class FieldOrder)
-import Ctl.Extra.IsData (productFromData, productToData)
 
 newtype Stake = Stake
   { gtClassRef :: Tagged GTTag AssetClass

@@ -5,21 +5,15 @@ import Prelude
 
 import Aeson (class EncodeAeson, class DecodeAeson)
 import Agora.SafeMoney (GTTag)
-import Agora.Types.AssetClass (AssetClass)
 import Contract.AssocMap (Map(Map))
 import Contract.Credential (Credential)
 import Contract.PlutusData (class FromData, class ToData, genericFromData, genericToData)
 import Contract.Scripts (ScriptHash)
+import Ctl.Extra.AssetClass (AssetClass)
 import Ctl.Extra.FieldOrder (class FieldOrder)
 import Ctl.Extra.IsData (productFromData, productToData)
 import Ctl.Extra.Tagged (Tagged)
-import Ctl.Internal.Plutus.Types.DataSchema
-  ( class HasPlutusSchema
-  , type (:+)
-  , type (:=)
-  , type (@@)
-  , PNil
-  )
+import Ctl.Internal.Plutus.Types.DataSchema (class HasPlutusSchema, type (:+), type (:=), type (@@), PNil)
 import Ctl.Internal.TypeLevel.Nat (S, Z)
 import Ctl.Internal.Types.PlutusData (PlutusData(Integer))
 import Ctl.Internal.Types.Transaction (DataHash)
