@@ -407,7 +407,7 @@ let additions =
           , "typelevel"
           ]
         , repo = "ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git"
-        , version = "d4859572c30277f5dd819b2910b0df1001e6026d"
+        , version = "caf3c64e0fb3c08710e533b417f52b25a46f696e"
         }
       , ply-ctl =
         { dependencies =

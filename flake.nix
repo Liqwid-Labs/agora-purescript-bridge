@@ -24,7 +24,7 @@
     };
 
     liqwid-ctl-extra = {
-      url = "git+ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git?ref=ctl-v5";
+      url = "git+ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git?rev=caf3c64e0fb3c08710e533b417f52b25a46f696e";
       inputs = {
         ctl.follows = "cardano-transaction-lib";
         nixpkgs.follows = "nixpkgs";
