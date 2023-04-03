@@ -5,7 +5,7 @@ module Agora.Pro.MultiSig
 
 import Prelude
 
-import Aeson (class DecodeAeson, decodeAeson)
+import Aeson (class DecodeAeson, class EncodeAeson, decodeAeson, encodeAeson)
 import Agora.MultiSig (MultiSig)
 import Contract.PlutusData (class FromData, class ToData, PlutusData(..))
 import Contract.Prelude (wrap)
@@ -55,6 +55,9 @@ instance FromData MultiSigDatum where
 
 instance DecodeAeson MultiSigDatum where
   decodeAeson x = wrap <$> decodeAeson x
+
+instance EncodeAeson MultiSigDatum where
+   encodeAeson (MultiSigDatum x) = encodeAeson x
 
 derive instance Generic MultiSigDatum _
 
