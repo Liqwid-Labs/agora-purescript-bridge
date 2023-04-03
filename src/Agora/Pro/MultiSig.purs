@@ -5,8 +5,10 @@ module Agora.Pro.MultiSig
 
 import Prelude
 
+import Aeson (class DecodeAeson, class EncodeAeson, decodeAeson, encodeAeson)
 import Agora.MultiSig (MultiSig)
 import Contract.PlutusData (class FromData, class ToData, PlutusData(..))
+import Contract.Prelude (wrap)
 import Contract.Value (CurrencySymbol)
 import Ctl.Internal.Plutus.Types.DataSchema (class HasPlutusSchema, type (:+), type (:=), type (@@), I, PNil)
 import Ctl.Internal.TypeLevel.Nat (Z)
@@ -50,6 +52,12 @@ instance ToData MultiSigDatum where
 
 instance FromData MultiSigDatum where
   fromData = productFromData
+
+instance DecodeAeson MultiSigDatum where
+  decodeAeson x = wrap <$> decodeAeson x
+
+instance EncodeAeson MultiSigDatum where
+   encodeAeson (MultiSigDatum x) = encodeAeson x
 
 derive instance Generic MultiSigDatum _
 

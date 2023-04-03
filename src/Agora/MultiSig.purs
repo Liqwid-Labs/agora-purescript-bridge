@@ -3,27 +3,17 @@ module Agora.MultiSig where
 
 import Prelude
 
+import Aeson (class DecodeAeson, class EncodeAeson, decodeAeson, encodeAeson)
+import Contract.PlutusData (class FromData, class ToData, genericFromData, genericToData)
+import Contract.Prelude (wrap)
+import Ctl.Internal.Plutus.Types.DataSchema (class HasPlutusSchema, type (:+), type (:=), type (@@), I, PNil)
+import Ctl.Internal.TypeLevel.Nat (Z)
 import Ctl.Internal.Types.PubKeyHash (PubKeyHash)
 import Data.BigInt (BigInt)
 import Data.Generic.Rep (class Generic)
 import Data.Lens (Iso')
-import Ctl.Internal.TypeLevel.Nat (Z)
 import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Newtype (class Newtype)
-import Contract.PlutusData
-  ( class FromData
-  , class ToData
-  , genericFromData
-  , genericToData
-  )
-import Ctl.Internal.Plutus.Types.DataSchema
-  ( class HasPlutusSchema
-  , type (:+)
-  , type (:=)
-  , type (@@)
-  , I
-  , PNil
-  )
 
 newtype MultiSig = MultiSig
   { keys :: Array PubKeyHash
@@ -48,6 +38,12 @@ instance ToData MultiSig where
 
 instance FromData MultiSig where
   fromData = genericFromData
+
+instance DecodeAeson MultiSig where
+  decodeAeson x = wrap <$> decodeAeson x
+
+instance EncodeAeson MultiSig where
+   encodeAeson (MultiSig x) = encodeAeson x
 
 derive instance Generic MultiSig _
 
