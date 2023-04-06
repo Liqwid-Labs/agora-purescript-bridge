@@ -17,6 +17,7 @@ result-*
 .projectile
 /dist/
 output.js
+.pre-commit-config.yaml
 
 # CTags 
 tags 

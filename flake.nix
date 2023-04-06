@@ -5,7 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     liqwid-nix = {
-      url = "github:Liqwid-Labs/liqwid-nix/v2.7.1";
+      url = "github:Liqwid-Labs/liqwid-nix/v2.7.2";
       inputs.nixpkgs-latest.follows = "nixpkgs-latest";
     };
 
