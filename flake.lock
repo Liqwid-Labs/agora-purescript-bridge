@@ -11678,16 +11678,16 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1679066304,
-        "narHash": "sha256-iM0TCA7Q90bR+OtYw6A4oEr4YbMDO4wtPmq753IP7Bk=",
+        "lastModified": 1679506613,
+        "narHash": "sha256-Vwv85+Z4WPbodqsubMLgg4WiW+2z30Zt6Q8rPY9WT8o=",
         "owner": "Liqwid-Labs",
         "repo": "liqwid-nix",
-        "rev": "c2631a1c9ee862934a5ce456fce0a9beac78d728",
+        "rev": "c763f911371def8c96a3191e5a1e549d4b501ee0",
         "type": "github"
       },
       "original": {
         "owner": "Liqwid-Labs",
-        "ref": "v2.7.1",
+        "ref": "v2.7.2",
         "repo": "liqwid-nix",
         "type": "github"
       }
