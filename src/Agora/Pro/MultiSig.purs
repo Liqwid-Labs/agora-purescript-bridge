@@ -57,7 +57,7 @@ instance DecodeAeson MultiSigDatum where
   decodeAeson x = wrap <$> decodeAeson x
 
 instance EncodeAeson MultiSigDatum where
-   encodeAeson (MultiSigDatum x) = encodeAeson x
+  encodeAeson (MultiSigDatum x) = encodeAeson x
 
 derive instance Generic MultiSigDatum _
 

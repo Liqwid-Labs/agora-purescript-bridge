@@ -43,7 +43,7 @@ instance DecodeAeson MultiSig where
   decodeAeson x = wrap <$> decodeAeson x
 
 instance EncodeAeson MultiSig where
-   encodeAeson (MultiSig x) = encodeAeson x
+  encodeAeson (MultiSig x) = encodeAeson x
 
 derive instance Generic MultiSig _
 
