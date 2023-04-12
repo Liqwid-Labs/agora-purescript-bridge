@@ -52,6 +52,18 @@
           };
         in
         {
+          pre-commit = {
+            settings = {
+              src = ./.;
+              excludes = [ "spago-packages.nix" ];
+              hooks = {
+                nixpkgs-fmt.enable = true;
+                purs-tidy.enable = true;
+                dhall-format.enable = true;
+              };
+            };
+          };
+
           offchain.default = {
             src = ./.;
 

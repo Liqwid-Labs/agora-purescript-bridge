@@ -13,6 +13,8 @@ import Ctl.Extra.AssetClass (AssetClass)
 import Ctl.Extra.FieldOrder (class FieldOrder)
 import Ctl.Extra.IsData (productFromData, productToData)
 import Ctl.Extra.Tagged (Tagged)
+import Ctl.Internal.Metadata.FromMetadata (class FromMetadata)
+import Ctl.Internal.Metadata.ToMetadata (class ToMetadata)
 import Ctl.Internal.Plutus.Types.DataSchema (class HasPlutusSchema, type (:+), type (:=), type (@@), PNil)
 import Ctl.Internal.TypeLevel.Nat (S, Z)
 import Ctl.Internal.Types.PlutusData (PlutusData(Integer))
@@ -68,6 +70,10 @@ derive newtype instance FromData ResultTag
 derive newtype instance EncodeAeson ResultTag
 
 derive newtype instance DecodeAeson ResultTag
+
+derive newtype instance ToMetadata ResultTag
+
+derive newtype instance FromMetadata ResultTag
 
 --------------------------------------------------------------------------------
 
