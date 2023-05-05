@@ -9,6 +9,7 @@ import Data.Generic.Rep (class Generic)
 import Data.Newtype (class Newtype)
 import Prim.RowList (Cons, Nil)
 import Ctl.Extra.IsData (productFromData, productToData)
+import Aeson as Aeson
 
 newtype ProposalStartingTime = ProposalStartingTime POSIXTime
 
@@ -23,6 +24,8 @@ derive newtype instance Show ProposalStartingTime
 derive newtype instance ToData ProposalStartingTime
 
 derive newtype instance FromData ProposalStartingTime
+
+derive newtype instance Aeson.EncodeAeson ProposalStartingTime
 
 --------------------------------------------------------------------------------
 
@@ -64,6 +67,8 @@ derive newtype instance Show ProposalTimingConfig
 
 derive instance Generic ProposalTimingConfig _
 
+derive newtype instance Aeson.EncodeAeson ProposalTimingConfig
+
 --------------------------------------------------------------------------------
 
 newtype MaxTimeRangeWidth = MaxTimeRangeWidth POSIXTime
@@ -81,3 +86,5 @@ derive newtype instance Show MaxTimeRangeWidth
 derive newtype instance ToData MaxTimeRangeWidth
 
 derive newtype instance FromData MaxTimeRangeWidth
+
+derive newtype instance Aeson.EncodeAeson MaxTimeRangeWidth
