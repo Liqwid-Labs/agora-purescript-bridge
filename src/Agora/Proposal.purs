@@ -4,6 +4,7 @@ module Agora.Proposal where
 import Prelude
 
 import Aeson (class EncodeAeson, class DecodeAeson)
+import Aeson as Aeson
 import Agora.SafeMoney (GTTag)
 import Contract.AssocMap (Map(Map))
 import Contract.Credential (Credential)
@@ -48,6 +49,8 @@ derive newtype instance Show ProposalId
 derive newtype instance ToData ProposalId
 
 derive newtype instance FromData ProposalId
+
+derive newtype instance Aeson.EncodeAeson ProposalId
 
 --------------------------------------------------------------------------------
 
@@ -125,6 +128,12 @@ instance Bounded ProposalStatus where
   bottom = genericBottom
   top = genericTop
 
+instance Aeson.EncodeAeson ProposalStatus where
+  encodeAeson Draft = Aeson.fromString "Draft"
+  encodeAeson VotingReady = Aeson.fromString "VotingReady"
+  encodeAeson Locked = Aeson.fromString "Locked"
+  encodeAeson Finished = Aeson.fromString "Finished"
+
 --------------------------------------------------------------------------------
 
 _Draft :: Prism' ProposalStatus Unit
@@ -184,6 +193,8 @@ derive newtype instance Show ProposalThresholds
 
 derive newtype instance Eq ProposalThresholds
 
+derive newtype instance Aeson.EncodeAeson ProposalThresholds
+
 --------------------------------------------------------------------------------
 
 _ProposalThresholds
@@ -218,6 +229,8 @@ derive newtype instance ToData ProposalVotes
 
 derive newtype instance FromData ProposalVotes
 
+derive newtype instance Aeson.EncodeAeson ProposalVotes
+
 --------------------------------------------------------------------------------
 
 _ProposalVotes
@@ -250,6 +263,8 @@ instance ToData ProposalEffectMetadata where
 
 instance FromData ProposalEffectMetadata where
   fromData = productFromData
+
+derive newtype instance Aeson.EncodeAeson ProposalEffectMetadata
 
 _ProposalEffectMetadata
   :: Iso' ProposalEffectMetadata
@@ -305,6 +320,8 @@ instance ToData ProposalDatum where
 
 instance FromData ProposalDatum where
   fromData = productFromData
+
+derive newtype instance Aeson.EncodeAeson ProposalDatum
 
 --------------------------------------------------------------------------------
 
