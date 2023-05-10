@@ -65,6 +65,10 @@ derive newtype instance Eq GovernorDatum
 
 derive newtype instance Show GovernorDatum
 
+derive newtype instance EncodeAeson GovernorDatum
+
+derive newtype instance DecodeAeson GovernorDatum
+
 --------------------------------------------------------------------------------
 
 _GovernorDatum
