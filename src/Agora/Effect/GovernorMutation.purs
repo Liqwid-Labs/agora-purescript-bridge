@@ -6,6 +6,7 @@ module Agora.Effect.GovernorMutation
 
 import Prelude
 
+import Aeson as Aeson
 import Agora.Governor (GovernorDatum)
 import Contract.PlutusData (class FromData, class ToData)
 import Ctl.Extra.FieldOrder (class FieldOrder)
@@ -26,6 +27,10 @@ derive instance Generic MutateGovernorDatum _
 derive instance Newtype MutateGovernorDatum _
 
 derive newtype instance Show MutateGovernorDatum
+
+derive newtype instance Aeson.DecodeAeson MutateGovernorDatum
+
+derive newtype instance Aeson.EncodeAeson MutateGovernorDatum
 
 instance
   FieldOrder MutateGovernorDatum

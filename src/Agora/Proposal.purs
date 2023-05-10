@@ -52,6 +52,8 @@ derive newtype instance FromData ProposalId
 
 derive newtype instance Aeson.EncodeAeson ProposalId
 
+derive newtype instance Aeson.DecodeAeson ProposalId
+
 --------------------------------------------------------------------------------
 
 newtype ResultTag = ResultTag BigInt
@@ -194,6 +196,8 @@ derive newtype instance Show ProposalThresholds
 derive newtype instance Eq ProposalThresholds
 
 derive newtype instance Aeson.EncodeAeson ProposalThresholds
+
+derive newtype instance Aeson.DecodeAeson ProposalThresholds
 
 --------------------------------------------------------------------------------
 

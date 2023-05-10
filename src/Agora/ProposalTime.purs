@@ -69,6 +69,8 @@ derive instance Generic ProposalTimingConfig _
 
 derive newtype instance Aeson.EncodeAeson ProposalTimingConfig
 
+derive newtype instance Aeson.DecodeAeson ProposalTimingConfig
+
 --------------------------------------------------------------------------------
 
 newtype MaxTimeRangeWidth = MaxTimeRangeWidth POSIXTime
@@ -86,5 +88,7 @@ derive newtype instance Show MaxTimeRangeWidth
 derive newtype instance ToData MaxTimeRangeWidth
 
 derive newtype instance FromData MaxTimeRangeWidth
+
+derive newtype instance Aeson.DecodeAeson MaxTimeRangeWidth
 
 derive newtype instance Aeson.EncodeAeson MaxTimeRangeWidth
