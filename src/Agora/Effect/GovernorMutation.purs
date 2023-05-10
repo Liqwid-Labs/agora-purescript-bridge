@@ -4,18 +4,17 @@ module Agora.Effect.GovernorMutation where
 import Prelude
 
 import Agora.Governor (GovernorDatum)
-import Ctl.Internal.Types.Transaction (TransactionInput)
+import Contract.PlutusData (class FromData, class ToData)
+import Ctl.Extra.FieldOrder (class FieldOrder)
+import Ctl.Extra.IsData (productFromData, productToData)
 import Data.Generic.Rep (class Generic)
 import Data.Lens (Iso')
 import Data.Lens.Iso.Newtype (_Newtype)
 import Data.Newtype (class Newtype)
-import Ctl.Extra.FieldOrder (class FieldOrder)
 import Prim.RowList (Cons, Nil)
-import Ctl.Extra.IsData (productFromData, productToData)
-import Contract.PlutusData (class FromData, class ToData)
 
 newtype MutateGovernorDatum = MutateGovernorDatum
-  { governorRef :: TransactionInput
+  { oldDatum :: GovernorDatum
   , newDatum :: GovernorDatum
   }
 
@@ -27,7 +26,7 @@ derive newtype instance Show MutateGovernorDatum
 
 instance
   FieldOrder MutateGovernorDatum
-    ( Cons "governorRef" TransactionInput
+    ( Cons "oldDatum" GovernorDatum
         ( Cons "newDatum" GovernorDatum Nil
         )
     )
@@ -42,5 +41,5 @@ instance FromData MutateGovernorDatum where
 
 _MutateGovernorDatum
   :: Iso' MutateGovernorDatum
-       { governorRef :: TransactionInput, newDatum :: GovernorDatum }
+       { oldDatum :: GovernorDatum, newDatum :: GovernorDatum }
 _MutateGovernorDatum = _Newtype
