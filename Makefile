@@ -4,6 +4,9 @@ SHELL := bash
 
 ps-sources := $$(fd -epurs)
 
+run-build:
+	spago build
+
 check-format:
 	@purs-tidy check ${ps-sources}
 
@@ -34,5 +37,4 @@ tag:
 	spago docs --format etags
 
 ci:
-	@ [[ "$$(uname -sm)" == "Linux x86_64" ]] || (echo "NOTE: CI only builds on Linux x86_64. Your system is $$(uname -sm), continuing...")
-	nix build .#check.$(shell nix eval -f '<nixpkgs>' system)
+	nix run .#ci
