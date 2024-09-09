@@ -7,11 +7,11 @@ let
 
     "aeson" = pkgs.stdenv.mkDerivation {
         name = "aeson";
-        version = "bfd8f4dcd0522a076320f9dc710c24817438e02e";
+        version = "07e422e1ffbe1d195c74df236cfb9fbfc54ac4b7";
         src = pkgs.fetchgit {
-          url = "https://github.com/mlabs-haskell/purescript-aeson.git";
-          rev = "bfd8f4dcd0522a076320f9dc710c24817438e02e";
-          sha256 = "1ywm51wqvwjqfrmhav6m4hyl9il3h77yyhzgyhvkvg0lkc0nn575";
+          url = "https://github.com/Banou26/purescript-aeson.git";
+          rev = "07e422e1ffbe1d195c74df236cfb9fbfc54ac4b7";
+          sha256 = "0grz7w44zk1sg2c8kx11hwdk7fa1vw0pzcbx4jpqn7x4b65298vp";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
@@ -211,11 +211,11 @@ let
 
     "cardano-transaction-lib" = pkgs.stdenv.mkDerivation {
         name = "cardano-transaction-lib";
-        version = "v5.0.0";
+        version = "73e4fd46c804094696f3ea7a2ad1ef041293f19f";
         src = pkgs.fetchgit {
-          url = "https://github.com/Plutonomicon/cardano-transaction-lib.git";
-          rev = "205f25b591656b825186d2187fdcba1e00c3df87";
-          sha256 = "09r109dmzihpkjbzdddbbylqrypjsm0psbqqwi9yilx55p1381cj";
+          url = "https://github.com/Liqwid-Labs/cardano-transaction-lib.git";
+          rev = "73e4fd46c804094696f3ea7a2ad1ef041293f19f";
+          sha256 = "1gxg0zmksg2wijwsgpwr0mg8prijvh6vw8lxblyi5pp8q51sq138";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
@@ -511,11 +511,11 @@ let
 
     "free" = pkgs.stdenv.mkDerivation {
         name = "free";
-        version = "v6.1.0";
+        version = "v6.2.0";
         src = pkgs.fetchgit {
           url = "https://github.com/purescript/purescript-free.git";
-          rev = "fea875168b4da6dec7ab819d780d8ecde9f37dbd";
-          sha256 = "038wbpmbv86q8s69fcvqb8fngkqc863axp7khzgnsqw55d1926r4";
+          rev = "c185c0b2144ddfb2bc3ac2b345df32e33221b21d";
+          sha256 = "10zsw49wzlzz78882b3grl19gpca5llpdk3ph608075h0ygk3q3k";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
@@ -701,13 +701,25 @@ let
         installPhase = "ln -s $src $out";
       };
 
+    "leibniz" = pkgs.stdenv.mkDerivation {
+        name = "leibniz";
+        version = "v5.0.0";
+        src = pkgs.fetchgit {
+          url = "https://github.com/paf31/purescript-leibniz.git";
+          rev = "ed1fa97012a01126c499f2d0e28dfea2919296b3";
+          sha256 = "1xxc84jx9qd4z89mlhjw602l6350cilvw8kd67ixsmsnd0krnl3f";
+        };
+        phases = "installPhase";
+        installPhase = "ln -s $src $out";
+      };
+
     "liqwid-ctl-extra" = pkgs.stdenv.mkDerivation {
         name = "liqwid-ctl-extra";
-        version = "a42e565dc6f8c495161dea1a8b8b55b8ce6e0c87";
+        version = "eff3b19dcd35bbd69be057aff47852c74a299a13";
         src = pkgs.fetchgit {
           url = "ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git";
-          rev = "a42e565dc6f8c495161dea1a8b8b55b8ce6e0c87";
-          sha256 = "0izgb6jf3pjd31d2f3m7j1mvppjzjyx3wvz59d595srjdsgp0lsm";
+          rev = "eff3b19dcd35bbd69be057aff47852c74a299a13";
+          sha256 = "0wv58jbpmwnadpk8183y32xbn5pjgdzgx0yahpqwpynbrvqdvwvd";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
@@ -883,11 +895,11 @@ let
 
     "node-fs" = pkgs.stdenv.mkDerivation {
         name = "node-fs";
-        version = "v6.1.0";
+        version = "v6.2.0";
         src = pkgs.fetchgit {
           url = "https://github.com/purescript-node/purescript-node-fs.git";
-          rev = "09a2b71a3a86f0cd19c46f4b6c40310cc1648909";
-          sha256 = "1w97m2afn7yn757niknkbk7w6nyg4n5dabxr7gzfz368z1nkf45s";
+          rev = "3cb63cc55a02e506fe07d3940a50d6f0eb6ca2f2";
+          sha256 = "1b89sxr6asxvgx59myhfbahiiz1z6sg2qfrm9bqd46h93ai8bhn1";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
@@ -1147,11 +1159,11 @@ let
 
     "ply-ctl" = pkgs.stdenv.mkDerivation {
         name = "ply-ctl";
-        version = "9e5cff99aeced65e1df984a15b362d40f1fa1e1a";
+        version = "06e26a795925fe8d7d5982e37517ba0bfcd805a4";
         src = pkgs.fetchgit {
           url = "https://github.com/mlabs-haskell/ply-ctl.git";
-          rev = "9e5cff99aeced65e1df984a15b362d40f1fa1e1a";
-          sha256 = "05s5pr313glcg3vfmjsbi6aw51f5bylllbij2k2nmpa0bisw45hi";
+          rev = "06e26a795925fe8d7d5982e37517ba0bfcd805a4";
+          sha256 = "1vpqi2y94h2ywmplcwvpxh98nxj140s8grz3g92z60pwfxybhh27";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
@@ -1567,11 +1579,11 @@ let
 
     "unicode" = pkgs.stdenv.mkDerivation {
         name = "unicode";
-        version = "v5.0.0";
+        version = "v5.0.1";
         src = pkgs.fetchgit {
           url = "https://github.com/purescript-contrib/purescript-unicode.git";
-          rev = "8e360802e31d080dec7f3ddf4d3329c56773490f";
-          sha256 = "0sqvgl3il2rl3zxkbzsqb19wib108zvyw73jxiavpfdm6hdmnxvc";
+          rev = "2b66dcdb2ea533c7bc864574e860012c57ace2aa";
+          sha256 = "0xh9wwyrl9nsw3h3wzalc1gaph39drj0i6k648cf9bnbb96nxa4z";
         };
         phases = "installPhase";
         installPhase = "ln -s $src $out";
