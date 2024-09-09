@@ -5,7 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     liqwid-nix = {
-      url = "github:Liqwid-Labs/liqwid-nix/v2.7.2";
+      url = "github:Liqwid-Labs/liqwid-nix/v2.9.2";
       inputs.nixpkgs-latest.follows = "nixpkgs-latest";
     };
 
@@ -15,18 +15,19 @@
 
     cardano-transaction-lib = {
       type = "github";
-      owner = "Plutonomicon";
+      owner = "Liqwid-Labs";
       repo = "cardano-transaction-lib";
       # NOTE
       # This should match the same revision as the one in your `packages.dhall` to ensure
       # the greatest compatibility
-      ref = "v5.0.0";
+      ref = "73e4fd46c804094696f3ea7a2ad1ef041293f19f";
     };
 
     liqwid-ctl-extra = {
-      url = "git+ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git";
+      url = "git+ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git?rev=eff3b19dcd35bbd69be057aff47852c74a299a13";
       inputs = {
-        ctl.follows = "cardano-transaction-lib";
+        liqwid-ctl-extra.inputs.nixpkgs-ctl.follows = "nixpkgs-ctl";
+        cardano-transaction-lib.follows = "cardano-transaction-lib";
         nixpkgs.follows = "nixpkgs";
       };
     };

@@ -1,270 +1,9 @@
-{-
-Welcome to your new Dhall package-set!
-
-Below are instructions for how to edit this file for most use
-cases, so that you don't need to know Dhall to use it.
-
-## Warning: Don't Move This Top-Level Comment!
-
-Due to how `dhall format` currently works, this comment's
-instructions cannot appear near corresponding sections below
-because `dhall format` will delete the comment. However,
-it will not delete a top-level comment like this one.
-
-## Use Cases
-
-Most will want to do one or both of these options:
-1. Override/Patch a package's dependency
-2. Add a package not already in the default package set
-
-This file will continue to work whether you use one or both options.
-Instructions for each option are explained below.
-
-### Overriding/Patching a package
-
-Purpose:
-- Change a package's dependency to a newer/older release than the
-    default package set's release
-- Use your own modified version of some dependency that may
-    include new API, changed API, removed API by
-    using your custom git repo of the library rather than
-    the package set's repo
-
-Syntax:
-where `entityName` is one of the following:
-- dependencies
-- repo
-- version
--------------------------------
-let upstream = --
-in  upstream
-  with packageName.entityName = "new value"
--------------------------------
-
-Example:
--------------------------------
-let upstream = --
-in  upstream
-  with halogen.version = "master"
-  with halogen.repo = "https://example.com/path/to/git/repo.git"
-
-  with halogen-vdom.version = "v4.0.0"
--------------------------------
-
-### Additions
-
-Purpose:
-- Add packages that aren't already included in the default package set
-
-Syntax:
-where `<version>` is:
-- a tag (i.e. "v4.0.0")
-- a branch (i.e. "master")
-- commit hash (i.e. "701f3e44aafb1a6459281714858fadf2c4c2a977")
--------------------------------
-let upstream = --
-in  upstream
-  with new-package-name =
-    { dependencies =
-       [ "dependency1"
-       , "dependency2"
-       ]
-    , repo =
-       "https://example.com/path/to/git/repo.git"
-    , version =
-        "<version>"
-    }
--------------------------------
-
-Example:
--------------------------------
-let upstream = --
-in  upstream
-  with benchotron =
-      { dependencies =
-          [ "arrays"
-          , "exists"
-          , "profunctor"
-          , "strings"
-          , "quickcheck"
-          , "lcg"
-          , "transformers"
-          , "foldable-traversable"
-          , "exceptions"
-          , "node-fs"
-          , "node-buffer"
-          , "node-readline"
-          , "datetime"
-          , "now"
-          ]
-      , repo =
-          "https://github.com/hdgarrood/purescript-benchotron.git"
-      , version =
-          "v7.0.0"
-      }
--------------------------------
--}
-let upstream =
-      https://github.com/purescript/package-sets/releases/download/psc-0.14.5-20211116/packages.dhall
-        sha256:7ba810597a275e43c83411d2ab0d4b3c54d0b551436f4b1632e9ff3eb62e327a
+let CTLPackages =
+      https://raw.githubusercontent.com/Plutonomicon/cardano-transaction-lib/v5.0.0/packages.dhall
+        sha256:f7653f36dc624e8c3022df4557b17f05c0420c9157b2327df3165d96fa43c493
 
 let additions =
-      { aeson =
-        { dependencies =
-          [ "aff"
-          , "argonaut"
-          , "argonaut-codecs"
-          , "argonaut-core"
-          , "arrays"
-          , "bifunctors"
-          , "bignumber"
-          , "bigints"
-          , "const"
-          , "control"
-          , "effect"
-          , "either"
-          , "exceptions"
-          , "foldable-traversable"
-          , "foreign-object"
-          , "gen"
-          , "identity"
-          , "integers"
-          , "maybe"
-          , "newtype"
-          , "node-buffer"
-          , "node-fs-aff"
-          , "node-path"
-          , "nonempty"
-          , "numbers"
-          , "partial"
-          , "prelude"
-          , "quickcheck"
-          , "record"
-          , "sequences"
-          , "spec"
-          , "strings"
-          , "transformers"
-          , "tuples"
-          , "typelevel"
-          , "typelevel-prelude"
-          , "uint"
-          , "untagged-union"
-          ]
-        , repo = "https://github.com/mlabs-haskell/purescript-aeson.git"
-        , version = "bfd8f4dcd0522a076320f9dc710c24817438e02e"
-        }
-      , sequences =
-        { dependencies =
-          [ "arrays"
-          , "assert"
-          , "console"
-          , "effect"
-          , "lazy"
-          , "maybe"
-          , "newtype"
-          , "nonempty"
-          , "partial"
-          , "prelude"
-          , "profunctor"
-          , "psci-support"
-          , "quickcheck"
-          , "quickcheck-laws"
-          , "tuples"
-          , "unfoldable"
-          , "unsafe-coerce"
-          ]
-        , repo = "https://github.com/hdgarrood/purescript-sequences"
-        , version = "v3.0.2"
-        }
-      , bignumber =
-        { dependencies =
-          [ "console"
-          , "effect"
-          , "either"
-          , "exceptions"
-          , "functions"
-          , "integers"
-          , "partial"
-          , "prelude"
-          , "tuples"
-          ]
-        , repo = "https://github.com/mlabs-haskell/purescript-bignumber"
-        , version = "705923edd892a3397b90d28ce7db9a7181dcd599"
-        }
-      , properties =
-        { dependencies = [ "prelude", "console" ]
-        , repo = "https://github.com/Risto-Stevcev/purescript-properties.git"
-        , version = "v0.2.0"
-        }
-      , lattice =
-        { dependencies = [ "prelude", "console", "properties" ]
-        , repo = "https://github.com/Risto-Stevcev/purescript-lattice.git"
-        , version = "v0.3.0"
-        }
-      , mote =
-        { dependencies = [ "these", "transformers", "arrays" ]
-        , repo = "https://github.com/garyb/purescript-mote"
-        , version = "v1.1.0"
-        }
-      , medea =
-        { dependencies =
-          [ "aff"
-          , "argonaut"
-          , "arrays"
-          , "bifunctors"
-          , "control"
-          , "effect"
-          , "either"
-          , "enums"
-          , "exceptions"
-          , "foldable-traversable"
-          , "foreign-object"
-          , "free"
-          , "integers"
-          , "lists"
-          , "maybe"
-          , "mote"
-          , "naturals"
-          , "newtype"
-          , "node-buffer"
-          , "node-fs-aff"
-          , "node-path"
-          , "nonempty"
-          , "ordered-collections"
-          , "parsing"
-          , "partial"
-          , "prelude"
-          , "psci-support"
-          , "quickcheck"
-          , "quickcheck-combinators"
-          , "safely"
-          , "spec"
-          , "strings"
-          , "these"
-          , "transformers"
-          , "typelevel"
-          , "tuples"
-          , "unicode"
-          , "unordered-collections"
-          , "unsafe-coerce"
-          ]
-        , repo = "https://github.com/juspay/medea-ps.git"
-        , version = "8b215851959aa8bbf33e6708df6bd683c89d1a5a"
-        }
-      , purescript-toppokki =
-        { dependencies =
-          [ "prelude"
-          , "record"
-          , "functions"
-          , "node-http"
-          , "aff-promise"
-          , "node-buffer"
-          , "node-fs-aff"
-          ]
-        , repo = "https://github.com/firefrorefiddle/purescript-toppokki"
-        , version = "6983e07bf0aa55ab779bcef12df3df339a2b5bd9"
-        }
-      , cardano-transaction-lib =
+      { cardano-transaction-lib =
         { dependencies =
           [ "aeson"
           , "argonaut-codecs"
@@ -355,22 +94,8 @@ let additions =
           , "untagged-union"
           , "variant"
           ]
-        , repo = "https://github.com/Plutonomicon/cardano-transaction-lib.git"
-        , version = "v5.0.0"
-        }
-      , noble-secp256k1 =
-        { dependencies =
-          [ "aff"
-          , "aff-promise"
-          , "effect"
-          , "prelude"
-          , "spec"
-          , "tuples"
-          , "unsafe-coerce"
-          ]
-        , repo =
-            "https://github.com/mlabs-haskell/purescript-noble-secp256k1.git"
-        , version = "710c15c48c5afae5e0623664d982a587ff2bd177"
+        , repo = "https://github.com/Liqwid-Labs/cardano-transaction-lib.git"
+        , version = "73e4fd46c804094696f3ea7a2ad1ef041293f19f"
         }
       , liqwid-ctl-extra =
         { dependencies =
@@ -388,13 +113,14 @@ let additions =
           , "foldable-traversable"
           , "foreign-object"
           , "http-methods"
+          , "leibniz"
           , "maybe"
           , "newtype"
           , "ordered-collections"
           , "parallel"
+          , "ply-ctl"
           , "prelude"
           , "profunctor-lenses"
-          , "ply-ctl"
           , "quickcheck"
           , "rationals"
           , "record"
@@ -407,7 +133,7 @@ let additions =
           , "typelevel"
           ]
         , repo = "ssh://git@github.com/Liqwid-Labs/liqwid-ctl-extra.git"
-        , version = "a42e565dc6f8c495161dea1a8b8b55b8ce6e0c87"
+        , version = "eff3b19dcd35bbd69be057aff47852c74a299a13"
         }
       , ply-ctl =
         { dependencies =
@@ -427,8 +153,47 @@ let additions =
           , "integers"
           ]
         , repo = "https://github.com/mlabs-haskell/ply-ctl.git"
-        , version = "9e5cff99aeced65e1df984a15b362d40f1fa1e1a"
+        , version = "06e26a795925fe8d7d5982e37517ba0bfcd805a4"
+        }
+      , aeson =
+        { dependencies =
+          [ "aff"
+          , "argonaut"
+          , "argonaut-codecs"
+          , "argonaut-core"
+          , "arrays"
+          , "bifunctors"
+          , "bigints"
+          , "bignumber"
+          , "const"
+          , "control"
+          , "effect"
+          , "either"
+          , "exceptions"
+          , "foldable-traversable"
+          , "foreign-object"
+          , "integers"
+          , "lists"
+          , "maybe"
+          , "mote"
+          , "numbers"
+          , "ordered-collections"
+          , "partial"
+          , "prelude"
+          , "quickcheck"
+          , "record"
+          , "sequences"
+          , "spec"
+          , "strings"
+          , "tuples"
+          , "typelevel"
+          , "typelevel-prelude"
+          , "uint"
+          , "untagged-union"
+          ]
+        , repo = "https://github.com/Banou26/purescript-aeson.git"
+        , version = "07e422e1ffbe1d195c74df236cfb9fbfc54ac4b7"
         }
       }
 
-in  upstream // additions
+in  CTLPackages // additions
